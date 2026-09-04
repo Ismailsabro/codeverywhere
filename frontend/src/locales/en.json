@@ -1,0 +1,72 @@
+{
+  "app": {
+    "name": "codeverywhere"
+  },
+  "nav": {
+    "employees": "Employees",
+    "chat": "Chat",
+    "logout": "Log out"
+  },
+  "common": {
+    "loading": "Loading...",
+    "cancel": "Cancel",
+    "error": "Error"
+  },
+  "login": {
+    "loginTitle": "Log in",
+    "registerTitle": "Create an account",
+    "name": "Name",
+    "email": "Email",
+    "password": "Password",
+    "submitLogin": "Log in",
+    "submitRegister": "Sign up",
+    "switchToRegister": "No account? Sign up",
+    "switchToLogin": "Already have an account? Log in",
+    "error": "Login error"
+  },
+  "employees": {
+    "title": "Employees (HR)",
+    "subtitle": "Human resources management",
+    "addButton": "+ Add employee",
+    "empty": "No employees",
+    "deleteConfirm": "Delete this employee?",
+    "table": {
+      "name": "Name",
+      "contact": "Contact",
+      "position": "Position",
+      "department": "Department",
+      "salary": "Salary",
+      "status": "Status",
+      "actions": "Actions"
+    },
+    "modal": {
+      "editTitle": "Edit employee",
+      "addTitle": "Add employee",
+      "submitEdit": "Save",
+      "submitAdd": "Add"
+    },
+    "form": {
+      "fullName": "Full name",
+      "email": "Email",
+      "phone": "Phone",
+      "position": "Position",
+      "department": "Department",
+      "salary": "Salary (DH)",
+      "hireDate": "Hire date",
+      "status": "Status"
+    },
+    "status": {
+      "active": "Active",
+      "on_leave": "On leave",
+      "terminated": "Terminated"
+    }
+  },
+  "chat": {
+    "title": "Team Chat",
+    "subtitle": "Internal communication",
+    "empty": "No messages. Be the first!",
+    "placeholder": "Type your message...",
+    "send": "Send",
+    "sendError": "Error sending message"
+  }
+}

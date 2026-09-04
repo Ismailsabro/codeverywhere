@@ -1,0 +1,72 @@
+{
+  "app": {
+    "name": "codeverywhere"
+  },
+  "nav": {
+    "employees": "Employés",
+    "chat": "Chat",
+    "logout": "Déconnexion"
+  },
+  "common": {
+    "loading": "Chargement...",
+    "cancel": "Annuler",
+    "error": "Erreur"
+  },
+  "login": {
+    "loginTitle": "Connexion",
+    "registerTitle": "Créer un compte",
+    "name": "Nom",
+    "email": "Email",
+    "password": "Mot de passe",
+    "submitLogin": "Se connecter",
+    "submitRegister": "S'inscrire",
+    "switchToRegister": "Pas de compte ? S'inscrire",
+    "switchToLogin": "Déjà un compte ? Se connecter",
+    "error": "Erreur de connexion"
+  },
+  "employees": {
+    "title": "Employés (RH)",
+    "subtitle": "Gestion des ressources humaines",
+    "addButton": "+ Ajouter un employé",
+    "empty": "Aucun employé",
+    "deleteConfirm": "Supprimer cet employé ?",
+    "table": {
+      "name": "Nom",
+      "contact": "Contact",
+      "position": "Poste",
+      "department": "Département",
+      "salary": "Salaire",
+      "status": "Statut",
+      "actions": "Actions"
+    },
+    "modal": {
+      "editTitle": "Modifier un employé",
+      "addTitle": "Ajouter un employé",
+      "submitEdit": "Modifier",
+      "submitAdd": "Ajouter"
+    },
+    "form": {
+      "fullName": "Nom complet",
+      "email": "Email",
+      "phone": "Téléphone",
+      "position": "Poste",
+      "department": "Département",
+      "salary": "Salaire (DH)",
+      "hireDate": "Date d'embauche",
+      "status": "Statut"
+    },
+    "status": {
+      "active": "Actif",
+      "on_leave": "En congé",
+      "terminated": "Terminé"
+    }
+  },
+  "chat": {
+    "title": "Chat Équipe",
+    "subtitle": "Communication interne",
+    "empty": "Aucun message. Soyez le premier !",
+    "placeholder": "Écrivez votre message...",
+    "send": "Envoyer",
+    "sendError": "Erreur envoi message"
+  }
+}

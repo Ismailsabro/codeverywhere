@@ -1,0 +1,72 @@
+{
+  "app": {
+    "name": "codeverywhere"
+  },
+  "nav": {
+    "employees": "Сотрудники",
+    "chat": "Чат",
+    "logout": "Выйти"
+  },
+  "common": {
+    "loading": "Загрузка...",
+    "cancel": "Отмена",
+    "error": "Ошибка"
+  },
+  "login": {
+    "loginTitle": "Вход",
+    "registerTitle": "Создать аккаунт",
+    "name": "Имя",
+    "email": "Эл. почта",
+    "password": "Пароль",
+    "submitLogin": "Войти",
+    "submitRegister": "Зарегистрироваться",
+    "switchToRegister": "Нет аккаунта? Зарегистрироваться",
+    "switchToLogin": "Уже есть аккаунт? Войти",
+    "error": "Ошибка входа"
+  },
+  "employees": {
+    "title": "Сотрудники (HR)",
+    "subtitle": "Управление персоналом",
+    "addButton": "+ Добавить сотрудника",
+    "empty": "Нет сотрудников",
+    "deleteConfirm": "Удалить этого сотрудника?",
+    "table": {
+      "name": "Имя",
+      "contact": "Контакты",
+      "position": "Должность",
+      "department": "Отдел",
+      "salary": "Зарплата",
+      "status": "Статус",
+      "actions": "Действия"
+    },
+    "modal": {
+      "editTitle": "Изменить сотрудника",
+      "addTitle": "Добавить сотрудника",
+      "submitEdit": "Сохранить",
+      "submitAdd": "Добавить"
+    },
+    "form": {
+      "fullName": "Полное имя",
+      "email": "Эл. почта",
+      "phone": "Телефон",
+      "position": "Должность",
+      "department": "Отдел",
+      "salary": "Зарплата (DH)",
+      "hireDate": "Дата приёма",
+      "status": "Статус"
+    },
+    "status": {
+      "active": "Активен",
+      "on_leave": "В отпуске",
+      "terminated": "Уволен"
+    }
+  },
+  "chat": {
+    "title": "Командный чат",
+    "subtitle": "Внутреннее общение",
+    "empty": "Нет сообщений. Будьте первым!",
+    "placeholder": "Введите сообщение...",
+    "send": "Отправить",
+    "sendError": "Ошибка отправки сообщения"
+  }
+}
