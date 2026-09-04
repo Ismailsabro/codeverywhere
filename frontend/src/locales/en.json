@@ -67,6 +67,9 @@
     "empty": "No messages. Be the first!",
     "placeholder": "Type your message...",
     "send": "Send",
-    "sendError": "Error sending message"
+    "sendError": "Error sending message",
+    "translate": "Translate",
+    "translateError": "Translation error",
+    "hideTranslation": "×"
   }
 }

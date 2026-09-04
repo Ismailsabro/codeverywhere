@@ -67,6 +67,9 @@
     "empty": "Aucun message. Soyez le premier !",
     "placeholder": "Écrivez votre message...",
     "send": "Envoyer",
-    "sendError": "Erreur envoi message"
+    "sendError": "Erreur envoi message",
+    "translate": "Traduire",
+    "translateError": "Erreur de traduction",
+    "hideTranslation": "×"
   }
 }
