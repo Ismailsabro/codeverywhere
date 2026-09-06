@@ -6,6 +6,7 @@
     "dashboard": "Dashboard",
     "employees": "Employees",
     "tasks": "Tasks",
+    "myTasks": "My tasks",
     "chat": "Chat",
     "logout": "Log out"
   },
@@ -91,6 +92,8 @@
   "tasks": {
     "title": "Tasks",
     "subtitle": "Task management",
+    "myTitle": "My tasks",
+    "mySubtitle": "Tasks assigned to you",
     "addButton": "+ Add task",
     "empty": "No tasks",
     "deleteConfirm": "Delete this task?",

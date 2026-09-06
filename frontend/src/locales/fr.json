@@ -6,6 +6,7 @@
     "dashboard": "Tableau de bord",
     "employees": "Employés",
     "tasks": "Tâches",
+    "myTasks": "Mes tâches",
     "chat": "Chat",
     "logout": "Déconnexion"
   },
@@ -91,6 +92,8 @@
   "tasks": {
     "title": "Tâches",
     "subtitle": "Gestion des tâches",
+    "myTitle": "Mes tâches",
+    "mySubtitle": "Tâches qui vous sont assignées",
     "addButton": "+ Ajouter une tâche",
     "empty": "Aucune tâche",
     "deleteConfirm": "Supprimer cette tâche ?",

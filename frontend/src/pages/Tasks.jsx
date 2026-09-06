@@ -1,11 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import api from '../api';
+import { useAuth } from '../context/AuthContext';
 
 const emptyForm = { title: '', description: '', employee_id: '', status: 'pending', due_date: '' };
 
 const Tasks = () => {
   const { t } = useTranslation();
+  const { user } = useAuth();
+  const isAdmin = user.role === 'admin';
   const [tasks, setTasks] = useState([]);
   const [employees, setEmployees] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -13,16 +16,19 @@ const Tasks = () => {
   const [editingTask, setEditingTask] = useState(null);
   const [formData, setFormData] = useState(emptyForm);
 
-  useEffect(() => { fetchAll(); }, []);
-
-  const fetchAll = async () => {
+  const fetchAll = useCallback(async () => {
     try {
-      const [tasksRes, employeesRes] = await Promise.all([api.get('/tasks'), api.get('/employees')]);
+      const [tasksRes, employeesRes] = await Promise.all([
+        api.get('/tasks'),
+        isAdmin ? api.get('/employees') : Promise.resolve({ data: [] })
+      ]);
       setTasks(tasksRes.data);
       setEmployees(employeesRes.data);
     } catch (err) { console.error(err); }
     finally { setLoading(false); }
-  };
+  }, [isAdmin]);
+
+  useEffect(() => { fetchAll(); }, [fetchAll]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -63,10 +69,15 @@ const Tasks = () => {
   return (
     <div>
       <div className="page-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-        <div><h1>✅ {t('tasks.title')}</h1><p>{t('tasks.subtitle')}</p></div>
-        <button className="btn btn-success" onClick={() => { setEditingTask(null); setFormData(emptyForm); setShowModal(true); }}>
-          {t('tasks.addButton')}
-        </button>
+        <div>
+          <h1>✅ {isAdmin ? t('tasks.title') : t('tasks.myTitle')}</h1>
+          <p>{isAdmin ? t('tasks.subtitle') : t('tasks.mySubtitle')}</p>
+        </div>
+        {isAdmin && (
+          <button className="btn btn-success" onClick={() => { setEditingTask(null); setFormData(emptyForm); setShowModal(true); }}>
+            {t('tasks.addButton')}
+          </button>
+        )}
       </div>
 
       <div className="data-table-container">
@@ -74,26 +85,28 @@ const Tasks = () => {
           <thead>
             <tr>
               <th>{t('tasks.table.title')}</th>
-              <th>{t('tasks.table.employee')}</th>
+              {isAdmin && <th>{t('tasks.table.employee')}</th>}
               <th>{t('tasks.table.status')}</th>
               <th>{t('tasks.table.dueDate')}</th>
-              <th>{t('tasks.table.actions')}</th>
+              {isAdmin && <th>{t('tasks.table.actions')}</th>}
             </tr>
           </thead>
           <tbody>
             {tasks.length === 0 ? (
-              <tr><td colSpan="5" className="empty-state">{t('tasks.empty')}</td></tr>
+              <tr><td colSpan={isAdmin ? 5 : 3} className="empty-state">{t('tasks.empty')}</td></tr>
             ) : (
               tasks.map(task => (
                 <tr key={task.id}>
                   <td><strong>{task.title}</strong></td>
-                  <td>{task.employee_name || t('tasks.unassigned')}</td>
+                  {isAdmin && <td>{task.employee_name || t('tasks.unassigned')}</td>}
                   <td><span className={`status-badge status-${task.status}`}>{t(`tasks.status.${task.status}`)}</span></td>
                   <td>{task.due_date || '—'}</td>
-                  <td>
-                    <button className="btn btn-secondary btn-sm" onClick={() => handleEdit(task)}>✏️</button>
-                    <button className="btn btn-danger btn-sm" onClick={() => handleDelete(task.id)} style={{marginLeft:'0.5rem'}}>🗑️</button>
-                  </td>
+                  {isAdmin && (
+                    <td>
+                      <button className="btn btn-secondary btn-sm" onClick={() => handleEdit(task)}>✏️</button>
+                      <button className="btn btn-danger btn-sm" onClick={() => handleDelete(task.id)} style={{marginLeft:'0.5rem'}}>🗑️</button>
+                    </td>
+                  )}
                 </tr>
               ))
             )}
@@ -101,7 +114,7 @@ const Tasks = () => {
         </table>
       </div>
 
-      {showModal && (
+      {isAdmin && showModal && (
         <div className="modal-overlay" onClick={() => setShowModal(false)}>
           <div className="modal" onClick={e => e.stopPropagation()}>
             <div className="modal-header">

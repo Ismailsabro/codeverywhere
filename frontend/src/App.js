@@ -44,12 +44,22 @@ const PrivateRoute = ({ children }) => {
   return user ? children : <Navigate to="/login" />;
 };
 
+const AdminRoute = ({ children }) => {
+  const { user, loading } = useAuth();
+  const { t } = useTranslation();
+  if (loading) return <div className="loading">{t('common.loading')}</div>;
+  if (!user) return <Navigate to="/login" />;
+  return user.role === 'admin' ? children : <Navigate to="/tasks" />;
+};
+
 const Layout = ({ children }) => {
   const { user, logout } = useAuth();
   const { t } = useTranslation();
   const location = useLocation();
   const unreadCount = useUnreadMessages(user);
   if (!user) return children;
+
+  const isAdmin = user.role === 'admin';
 
   const navLinkStyle = (path) => ({
     display: 'block', color: location.pathname === path ? '#60a5fa' : 'white', marginBottom: '1rem', textDecoration: 'none'
@@ -59,9 +69,9 @@ const Layout = ({ children }) => {
     <div style={{ display: 'flex', minHeight: '100vh' }}>
       <div style={{ width: 200, background: '#111827', color: 'white', padding: '1rem', display: 'flex', flexDirection: 'column' }}>
         <h2 style={{ fontSize: '1.1rem', marginBottom: '2rem' }}>{t('app.name')}</h2>
-        <Link to="/" style={navLinkStyle('/')}>📊 {t('nav.dashboard')}</Link>
-        <Link to="/employees" style={navLinkStyle('/employees')}>👥 {t('nav.employees')}</Link>
-        <Link to="/tasks" style={navLinkStyle('/tasks')}>✅ {t('nav.tasks')}</Link>
+        {isAdmin && <Link to="/" style={navLinkStyle('/')}>📊 {t('nav.dashboard')}</Link>}
+        {isAdmin && <Link to="/employees" style={navLinkStyle('/employees')}>👥 {t('nav.employees')}</Link>}
+        <Link to="/tasks" style={navLinkStyle('/tasks')}>✅ {isAdmin ? t('nav.tasks') : t('nav.myTasks')}</Link>
         <Link to="/chat" style={navLinkStyle('/chat')}>
           💬 {t('nav.chat')}
           {unreadCount > 0 && <span className="nav-badge">{unreadCount}</span>}
@@ -85,8 +95,8 @@ function App() {
         <Layout>
           <Routes>
             <Route path="/login" element={<Login />} />
-            <Route path="/" element={<PrivateRoute><Dashboard /></PrivateRoute>} />
-            <Route path="/employees" element={<PrivateRoute><Employees /></PrivateRoute>} />
+            <Route path="/" element={<AdminRoute><Dashboard /></AdminRoute>} />
+            <Route path="/employees" element={<AdminRoute><Employees /></AdminRoute>} />
             <Route path="/tasks" element={<PrivateRoute><Tasks /></PrivateRoute>} />
             <Route path="/chat" element={<PrivateRoute><Chat /></PrivateRoute>} />
           </Routes>

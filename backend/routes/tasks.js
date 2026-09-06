@@ -1,19 +1,26 @@
 const express = require('express');
 const { pool } = require('../db');
 const authMiddleware = require('../middleware/auth');
+const requireAdmin = require('../middleware/requireAdmin');
 
 const router = express.Router();
 router.use(authMiddleware);
 
-// GET /api/tasks
+// GET /api/tasks - admins see every task, employees only see their own
 router.get('/', async (req, res) => {
   try {
-    const result = await pool.query(`
+    let query = `
       SELECT tasks.*, employees.name AS employee_name
       FROM tasks
       LEFT JOIN employees ON tasks.employee_id = employees.id
-      ORDER BY tasks.created_at DESC
-    `);
+    `;
+    const params = [];
+    if (req.user.role !== 'admin') {
+      query += ' WHERE tasks.employee_id = $1';
+      params.push(req.user.employeeId);
+    }
+    query += ' ORDER BY tasks.created_at DESC';
+    const result = await pool.query(query, params);
     res.json(result.rows);
   } catch (err) {
     console.error(err);
@@ -22,7 +29,7 @@ router.get('/', async (req, res) => {
 });
 
 // POST /api/tasks
-router.post('/', async (req, res) => {
+router.post('/', requireAdmin, async (req, res) => {
   const { title, description, employee_id, status, due_date } = req.body;
   if (!title || !title.trim()) return res.status(400).json({ error: 'Titre requis' });
   try {
@@ -39,7 +46,7 @@ router.post('/', async (req, res) => {
 });
 
 // PUT /api/tasks/:id
-router.put('/:id', async (req, res) => {
+router.put('/:id', requireAdmin, async (req, res) => {
   const { title, description, employee_id, status, due_date } = req.body;
   try {
     const result = await pool.query(
@@ -56,7 +63,7 @@ router.put('/:id', async (req, res) => {
 });
 
 // DELETE /api/tasks/:id
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', requireAdmin, async (req, res) => {
   try {
     await pool.query('DELETE FROM tasks WHERE id=$1', [req.params.id]);
     res.json({ success: true });

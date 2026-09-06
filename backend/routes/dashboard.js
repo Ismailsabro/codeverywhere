@@ -1,9 +1,10 @@
 const express = require('express');
 const { pool } = require('../db');
 const authMiddleware = require('../middleware/auth');
+const requireAdmin = require('../middleware/requireAdmin');
 
 const router = express.Router();
-router.use(authMiddleware);
+router.use(authMiddleware, requireAdmin);
 
 // GET /api/dashboard/stats
 router.get('/stats', async (req, res) => {
