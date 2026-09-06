@@ -9,6 +9,7 @@ const messagesRoutes = require('./routes/messages');
 const translateRoutes = require('./routes/translate');
 const tasksRoutes = require('./routes/tasks');
 const dashboardRoutes = require('./routes/dashboard');
+const uzbekTeamRoutes = require('./routes/uzbekTeam');
 
 const app = express();
 app.use(cors());
@@ -20,6 +21,7 @@ app.use('/api/messages', messagesRoutes);
 app.use('/api/translate', translateRoutes);
 app.use('/api/tasks', tasksRoutes);
 app.use('/api/dashboard', dashboardRoutes);
+app.use('/api/uzbek-team', uzbekTeamRoutes);
 
 app.get('/', (req, res) => res.send('API codeverywhere en ligne ✅'));
 

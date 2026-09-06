@@ -130,6 +130,12 @@ const Employees = () => {
                       </select>
                     </div>
                   )}
+                  {editingEmployee && (
+                    <div className="form-group" style={{ flexDirection: 'row', alignItems: 'center', gap: '0.5rem' }}>
+                      <input type="checkbox" id="can_manage_uzbek_team" checked={!!formData.can_manage_uzbek_team} onChange={e => setFormData({...formData, can_manage_uzbek_team: e.target.checked})} />
+                      <label htmlFor="can_manage_uzbek_team" style={{ margin: 0 }}>{t('employees.canManageUzbekTeam')}</label>
+                    </div>
+                  )}
                 </div>
               </div>
               <div className="modal-footer">

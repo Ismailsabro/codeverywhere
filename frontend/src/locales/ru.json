@@ -70,7 +70,8 @@
       "submit": "Создать доступ",
       "success": "Доступ создан — передайте эти данные сотруднику.",
       "noEmail": "У этого сотрудника нет эл. почты"
-    }
+    },
+    "canManageUzbekTeam": "Может управлять TEAM Uzbekistan"
   },
   "chat": {
     "title": "Командный чат",
@@ -133,6 +134,26 @@
       "pending": "В ожидании",
       "in_progress": "В процессе",
       "done": "Завершена"
+    }
+  },
+  "teamUzbekistan": {
+    "title": "TEAM Uzbekistan",
+    "subtitle": "Закрытый список — не связан с Чатом или Задачами",
+    "addButton": "+ Добавить участника",
+    "empty": "Пока никого нет",
+    "deleteConfirm": "Удалить этого участника?",
+    "modal": {
+      "editTitle": "Изменить участника",
+      "addTitle": "Добавить участника",
+      "submitEdit": "Сохранить",
+      "submitAdd": "Добавить"
+    },
+    "form": {
+      "name": "Имя",
+      "photo": "Фото",
+      "birthDate": "Дата рождения",
+      "startDate": "Дата начала",
+      "salary": "Зарплата ($)"
     }
   }
 }

@@ -70,7 +70,8 @@
       "submit": "Set access",
       "success": "Access created — share these credentials with the employee.",
       "noEmail": "This employee has no email address"
-    }
+    },
+    "canManageUzbekTeam": "Can manage TEAM Uzbekistan"
   },
   "chat": {
     "title": "Team Chat",
@@ -133,6 +134,26 @@
       "pending": "Pending",
       "in_progress": "In progress",
       "done": "Done"
+    }
+  },
+  "teamUzbekistan": {
+    "title": "TEAM Uzbekistan",
+    "subtitle": "Private roster — not part of Chat or Tasks",
+    "addButton": "+ Add team member",
+    "empty": "No team members yet",
+    "deleteConfirm": "Delete this team member?",
+    "modal": {
+      "editTitle": "Edit team member",
+      "addTitle": "Add team member",
+      "submitEdit": "Save",
+      "submitAdd": "Add"
+    },
+    "form": {
+      "name": "Name",
+      "photo": "Photo",
+      "birthDate": "Date of birth",
+      "startDate": "Start date",
+      "salary": "Salary ($)"
     }
   }
 }

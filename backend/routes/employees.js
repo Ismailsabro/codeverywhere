@@ -36,12 +36,12 @@ router.post('/', async (req, res) => {
 
 // PUT /api/employees/:id
 router.put('/:id', async (req, res) => {
-  const { name, email, phone, position, department, salary, status, hire_date } = req.body;
+  const { name, email, phone, position, department, salary, status, hire_date, can_manage_uzbek_team } = req.body;
   try {
     const result = await pool.query(
-      `UPDATE employees SET name=$1, email=$2, phone=$3, position=$4, department=$5, salary=$6, status=$7, hire_date=$8
-       WHERE id=$9 RETURNING *`,
-      [name, email, phone, position, department, salary || 0, status || 'active', hire_date || null, req.params.id]
+      `UPDATE employees SET name=$1, email=$2, phone=$3, position=$4, department=$5, salary=$6, status=$7, hire_date=$8, can_manage_uzbek_team=$9
+       WHERE id=$10 RETURNING *`,
+      [name, email, phone, position, department, salary || 0, status || 'active', hire_date || null, !!can_manage_uzbek_team, req.params.id]
     );
     if (result.rows.length === 0) return res.status(404).json({ error: 'Employé introuvable' });
     res.json(result.rows[0]);

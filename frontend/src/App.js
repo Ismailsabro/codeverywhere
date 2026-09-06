@@ -5,6 +5,7 @@ import { AuthProvider, useAuth } from './context/AuthContext';
 import Login from './pages/Login';
 import Dashboard from './pages/Dashboard';
 import Tasks from './pages/Tasks';
+import TeamUzbekistan from './pages/TeamUzbekistan';
 import Employees from './components/Employees';
 import Chat from './components/Chat';
 import LanguageSwitcher from './components/LanguageSwitcher';
@@ -52,6 +53,14 @@ const AdminRoute = ({ children }) => {
   return user.role === 'admin' ? children : <Navigate to="/tasks" />;
 };
 
+const TeamAccessRoute = ({ children }) => {
+  const { user, loading } = useAuth();
+  const { t } = useTranslation();
+  if (loading) return <div className="loading">{t('common.loading')}</div>;
+  if (!user) return <Navigate to="/login" />;
+  return (user.role === 'admin' || user.canManageUzbekTeam) ? children : <Navigate to="/tasks" />;
+};
+
 const Layout = ({ children }) => {
   const { user, logout } = useAuth();
   const { t } = useTranslation();
@@ -60,6 +69,7 @@ const Layout = ({ children }) => {
   if (!user) return children;
 
   const isAdmin = user.role === 'admin';
+  const hasTeamAccess = isAdmin || user.canManageUzbekTeam;
 
   const navLinkStyle = (path) => ({
     display: 'block', color: location.pathname === path ? '#60a5fa' : 'white', marginBottom: '1rem', textDecoration: 'none'
@@ -72,6 +82,7 @@ const Layout = ({ children }) => {
         {isAdmin && <Link to="/" style={navLinkStyle('/')}>📊 {t('nav.dashboard')}</Link>}
         {isAdmin && <Link to="/employees" style={navLinkStyle('/employees')}>👥 {t('nav.employees')}</Link>}
         <Link to="/tasks" style={navLinkStyle('/tasks')}>✅ {isAdmin ? t('nav.tasks') : t('nav.myTasks')}</Link>
+        {hasTeamAccess && <Link to="/team-uzbekistan" style={navLinkStyle('/team-uzbekistan')}>🌍 TEAM Uzbekistan</Link>}
         <Link to="/chat" style={navLinkStyle('/chat')}>
           💬 {t('nav.chat')}
           {unreadCount > 0 && <span className="nav-badge">{unreadCount}</span>}
@@ -98,6 +109,7 @@ function App() {
             <Route path="/" element={<AdminRoute><Dashboard /></AdminRoute>} />
             <Route path="/employees" element={<AdminRoute><Employees /></AdminRoute>} />
             <Route path="/tasks" element={<PrivateRoute><Tasks /></PrivateRoute>} />
+            <Route path="/team-uzbekistan" element={<TeamAccessRoute><TeamUzbekistan /></TeamAccessRoute>} />
             <Route path="/chat" element={<PrivateRoute><Chat /></PrivateRoute>} />
           </Routes>
         </Layout>

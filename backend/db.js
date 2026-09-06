@@ -79,6 +79,26 @@ const initDb = async () => {
     );
   `);
 
+  // Grants a specific employee (e.g. the CEO) access to manage the
+  // separate Team Uzbekistan roster below, without making them a full admin.
+  await pool.query('ALTER TABLE employees ADD COLUMN IF NOT EXISTS can_manage_uzbek_team BOOLEAN DEFAULT false');
+
+  // Team Uzbekistan: a standalone roster, deliberately not linked to
+  // users/employees - these people have no login and never appear in
+  // Chat or Tasks.
+  await pool.query(`
+    CREATE TABLE IF NOT EXISTS uzbek_team_members (
+      id SERIAL PRIMARY KEY,
+      name VARCHAR(255) NOT NULL,
+      photo_data BYTEA,
+      photo_type VARCHAR(100),
+      birth_date DATE,
+      start_date DATE,
+      salary NUMERIC(10,2) DEFAULT 0,
+      created_at TIMESTAMP DEFAULT NOW()
+    );
+  `);
+
   console.log('✅ Tables prêtes');
 };
 

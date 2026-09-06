@@ -70,7 +70,8 @@
       "submit": "Créer l'accès",
       "success": "Accès créé — communiquez ces identifiants à l'employé.",
       "noEmail": "Cet employé n'a pas d'adresse email"
-    }
+    },
+    "canManageUzbekTeam": "Peut gérer TEAM Uzbekistan"
   },
   "chat": {
     "title": "Chat Équipe",
@@ -133,6 +134,26 @@
       "pending": "En attente",
       "in_progress": "En cours",
       "done": "Terminée"
+    }
+  },
+  "teamUzbekistan": {
+    "title": "TEAM Uzbekistan",
+    "subtitle": "Registre privé — ne fait pas partie du Chat ni des Tâches",
+    "addButton": "+ Ajouter un membre",
+    "empty": "Aucun membre pour l'instant",
+    "deleteConfirm": "Supprimer ce membre ?",
+    "modal": {
+      "editTitle": "Modifier un membre",
+      "addTitle": "Ajouter un membre",
+      "submitEdit": "Modifier",
+      "submitAdd": "Ajouter"
+    },
+    "form": {
+      "name": "Nom",
+      "photo": "Photo",
+      "birthDate": "Date de naissance",
+      "startDate": "Date de début",
+      "salary": "Salaire ($)"
     }
   }
 }
