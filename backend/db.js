@@ -1,5 +1,10 @@
-const { Pool } = require('pg');
+const { Pool, types } = require('pg');
 require('dotenv').config();
+
+// Without this, node-pg parses DATE columns into JS Date objects, which
+// JSON.stringify then turns into full timestamps (e.g. "1999-08-20T00:00:00.000Z")
+// instead of the plain "1999-08-20" every date field in this app expects.
+types.setTypeParser(1082, (val) => val);
 
 // Render fournit automatiquement DATABASE_URL quand tu connectes une base Postgres
 const pool = new Pool({
