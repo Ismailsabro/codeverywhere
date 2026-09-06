@@ -15,7 +15,9 @@ router.get('/stats', async (req, res) => {
       tasksByStatus,
       tasksPerEmployee,
       messagesTotal,
-      messagesToday
+      messagesToday,
+      employeesSalary,
+      teamSalary
     ] = await Promise.all([
       pool.query('SELECT COUNT(*) FROM employees'),
       pool.query('SELECT status, COUNT(*) FROM employees GROUP BY status'),
@@ -28,8 +30,13 @@ router.get('/stats', async (req, res) => {
         ORDER BY count DESC, employees.name ASC
       `),
       pool.query('SELECT COUNT(*) FROM messages'),
-      pool.query('SELECT COUNT(*) FROM messages WHERE created_at >= CURRENT_DATE')
+      pool.query('SELECT COUNT(*) FROM messages WHERE created_at >= CURRENT_DATE'),
+      pool.query('SELECT COALESCE(SUM(salary), 0) AS total FROM employees'),
+      pool.query('SELECT COALESCE(SUM(salary), 0) AS total FROM uzbek_team_members')
     ]);
+
+    const employeesPayroll = Number(employeesSalary.rows[0].total);
+    const teamPayroll = Number(teamSalary.rows[0].total);
 
     res.json({
       employees: {
@@ -44,6 +51,11 @@ router.get('/stats', async (req, res) => {
       messages: {
         total: Number(messagesTotal.rows[0].count),
         today: Number(messagesToday.rows[0].count)
+      },
+      payroll: {
+        employees: employeesPayroll,
+        team: teamPayroll,
+        total: employeesPayroll + teamPayroll
       }
     });
   } catch (err) {

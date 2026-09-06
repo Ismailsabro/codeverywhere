@@ -8,7 +8,8 @@
     "tasks": "Tâches",
     "myTasks": "Mes tâches",
     "chat": "Chat",
-    "logout": "Déconnexion"
+    "logout": "Déconnexion",
+    "totalPayroll": "Total salaires mensuel"
   },
   "common": {
     "loading": "Chargement...",

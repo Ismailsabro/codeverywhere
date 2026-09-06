@@ -8,7 +8,8 @@
     "tasks": "Задачи",
     "myTasks": "Мои задачи",
     "chat": "Чат",
-    "logout": "Выйти"
+    "logout": "Выйти",
+    "totalPayroll": "Общая зарплата в месяц"
   },
   "common": {
     "loading": "Загрузка...",

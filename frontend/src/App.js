@@ -38,6 +38,21 @@ const useUnreadMessages = (user) => {
   return count;
 };
 
+const useTotalPayroll = (isAdmin) => {
+  const [total, setTotal] = useState(null);
+
+  useEffect(() => {
+    if (!isAdmin) { setTotal(null); return; }
+    let cancelled = false;
+    api.get('/dashboard/stats')
+      .then(res => { if (!cancelled) setTotal(res.data.payroll.total); })
+      .catch(() => {});
+    return () => { cancelled = true; };
+  }, [isAdmin]);
+
+  return total;
+};
+
 const PrivateRoute = ({ children }) => {
   const { user, loading } = useAuth();
   const { t } = useTranslation();
@@ -66,6 +81,7 @@ const Layout = ({ children }) => {
   const { t } = useTranslation();
   const location = useLocation();
   const unreadCount = useUnreadMessages(user);
+  const totalPayroll = useTotalPayroll(!!user && user.role === 'admin');
   if (!user) return children;
 
   const isAdmin = user.role === 'admin';
@@ -88,6 +104,12 @@ const Layout = ({ children }) => {
           {unreadCount > 0 && <span className="nav-badge">{unreadCount}</span>}
         </Link>
         <div style={{ marginTop: 'auto' }}>
+          {isAdmin && totalPayroll !== null && (
+            <div style={{ marginBottom: '1rem', paddingTop: '0.75rem', borderTop: '1px solid #374151' }}>
+              <div style={{ fontSize: '0.7rem', color: '#9ca3af' }}>{t('nav.totalPayroll')}</div>
+              <div style={{ fontSize: '1.1rem', fontWeight: 700 }}>${totalPayroll.toFixed(2)}</div>
+            </div>
+          )}
           <LanguageSwitcher />
           <button onClick={logout} style={{ marginTop: '1rem', width: '100%', background: 'transparent', border: '1px solid #374151', color: 'white', padding: '0.5rem 1rem', borderRadius: 6, cursor: 'pointer' }}>
             {t('nav.logout')}
