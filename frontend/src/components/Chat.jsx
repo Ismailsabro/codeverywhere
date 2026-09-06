@@ -24,6 +24,10 @@ const Chat = () => {
     try {
       const res = await api.get('/messages');
       setMessages(res.data);
+      if (res.data.length > 0) {
+        const maxId = Math.max(...res.data.map(m => m.id));
+        localStorage.setItem('chatLastSeenId', String(maxId));
+      }
     } catch (err) { console.error(err); }
     finally { setLoading(false); }
   };

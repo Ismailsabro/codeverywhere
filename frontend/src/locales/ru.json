@@ -3,7 +3,9 @@
     "name": "codeverywhere"
   },
   "nav": {
+    "dashboard": "Панель управления",
     "employees": "Сотрудники",
+    "tasks": "Задачи",
     "chat": "Чат",
     "logout": "Выйти"
   },
@@ -71,5 +73,52 @@
     "translate": "Перевести",
     "translateError": "Ошибка перевода",
     "hideTranslation": "×"
+  },
+  "dashboard": {
+    "title": "Панель управления",
+    "subtitle": "Обзор",
+    "stats": {
+      "totalEmployees": "Сотрудники",
+      "activeEmployees": "Активные сотрудники",
+      "totalTasks": "Задачи",
+      "messagesToday": "Сообщений сегодня"
+    },
+    "charts": {
+      "tasksPerEmployee": "Задачи по сотрудникам",
+      "tasksByStatus": "Задачи по статусу"
+    }
+  },
+  "tasks": {
+    "title": "Задачи",
+    "subtitle": "Управление задачами",
+    "addButton": "+ Добавить задачу",
+    "empty": "Нет задач",
+    "deleteConfirm": "Удалить эту задачу?",
+    "unassigned": "Не назначена",
+    "table": {
+      "title": "Название",
+      "employee": "Сотрудник",
+      "status": "Статус",
+      "dueDate": "Срок",
+      "actions": "Действия"
+    },
+    "modal": {
+      "editTitle": "Изменить задачу",
+      "addTitle": "Добавить задачу",
+      "submitEdit": "Сохранить",
+      "submitAdd": "Добавить"
+    },
+    "form": {
+      "title": "Название",
+      "description": "Описание",
+      "employee": "Сотрудник",
+      "status": "Статус",
+      "dueDate": "Срок"
+    },
+    "status": {
+      "pending": "В ожидании",
+      "in_progress": "В процессе",
+      "done": "Завершена"
+    }
   }
 }

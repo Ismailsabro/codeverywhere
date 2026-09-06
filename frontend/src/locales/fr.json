@@ -3,7 +3,9 @@
     "name": "codeverywhere"
   },
   "nav": {
+    "dashboard": "Tableau de bord",
     "employees": "Employés",
+    "tasks": "Tâches",
     "chat": "Chat",
     "logout": "Déconnexion"
   },
@@ -71,5 +73,52 @@
     "translate": "Traduire",
     "translateError": "Erreur de traduction",
     "hideTranslation": "×"
+  },
+  "dashboard": {
+    "title": "Tableau de bord",
+    "subtitle": "Vue d'ensemble",
+    "stats": {
+      "totalEmployees": "Employés",
+      "activeEmployees": "Employés actifs",
+      "totalTasks": "Tâches",
+      "messagesToday": "Messages aujourd'hui"
+    },
+    "charts": {
+      "tasksPerEmployee": "Tâches par employé",
+      "tasksByStatus": "Tâches par statut"
+    }
+  },
+  "tasks": {
+    "title": "Tâches",
+    "subtitle": "Gestion des tâches",
+    "addButton": "+ Ajouter une tâche",
+    "empty": "Aucune tâche",
+    "deleteConfirm": "Supprimer cette tâche ?",
+    "unassigned": "Non assignée",
+    "table": {
+      "title": "Titre",
+      "employee": "Employé",
+      "status": "Statut",
+      "dueDate": "Échéance",
+      "actions": "Actions"
+    },
+    "modal": {
+      "editTitle": "Modifier une tâche",
+      "addTitle": "Ajouter une tâche",
+      "submitEdit": "Modifier",
+      "submitAdd": "Ajouter"
+    },
+    "form": {
+      "title": "Titre",
+      "description": "Description",
+      "employee": "Employé",
+      "status": "Statut",
+      "dueDate": "Échéance"
+    },
+    "status": {
+      "pending": "En attente",
+      "in_progress": "En cours",
+      "done": "Terminée"
+    }
   }
 }

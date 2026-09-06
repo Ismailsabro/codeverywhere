@@ -3,7 +3,9 @@
     "name": "codeverywhere"
   },
   "nav": {
+    "dashboard": "Dashboard",
     "employees": "Employees",
+    "tasks": "Tasks",
     "chat": "Chat",
     "logout": "Log out"
   },
@@ -71,5 +73,52 @@
     "translate": "Translate",
     "translateError": "Translation error",
     "hideTranslation": "×"
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "subtitle": "Overview",
+    "stats": {
+      "totalEmployees": "Employees",
+      "activeEmployees": "Active employees",
+      "totalTasks": "Tasks",
+      "messagesToday": "Messages today"
+    },
+    "charts": {
+      "tasksPerEmployee": "Tasks per employee",
+      "tasksByStatus": "Tasks by status"
+    }
+  },
+  "tasks": {
+    "title": "Tasks",
+    "subtitle": "Task management",
+    "addButton": "+ Add task",
+    "empty": "No tasks",
+    "deleteConfirm": "Delete this task?",
+    "unassigned": "Unassigned",
+    "table": {
+      "title": "Title",
+      "employee": "Employee",
+      "status": "Status",
+      "dueDate": "Due date",
+      "actions": "Actions"
+    },
+    "modal": {
+      "editTitle": "Edit task",
+      "addTitle": "Add task",
+      "submitEdit": "Save",
+      "submitAdd": "Add"
+    },
+    "form": {
+      "title": "Title",
+      "description": "Description",
+      "employee": "Employee",
+      "status": "Status",
+      "dueDate": "Due date"
+    },
+    "status": {
+      "pending": "Pending",
+      "in_progress": "In progress",
+      "done": "Done"
+    }
   }
 }
