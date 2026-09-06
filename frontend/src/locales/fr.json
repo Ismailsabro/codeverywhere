@@ -54,7 +54,7 @@
       "phone": "Téléphone",
       "position": "Poste",
       "department": "Département",
-      "salary": "Salaire (DH)",
+      "salary": "Salaire ($)",
       "hireDate": "Date d'embauche",
       "status": "Statut"
     },

@@ -54,7 +54,7 @@
       "phone": "Телефон",
       "position": "Должность",
       "department": "Отдел",
-      "salary": "Зарплата (DH)",
+      "salary": "Зарплата ($)",
       "hireDate": "Дата приёма",
       "status": "Статус"
     },

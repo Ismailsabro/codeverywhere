@@ -87,7 +87,7 @@ const Employees = () => {
                   <td><div>{emp.email}</div><div style={{fontSize:'0.8rem',color:'#6b7280'}}>{emp.phone}</div></td>
                   <td>{emp.position}</td>
                   <td>{emp.department}</td>
-                  <td>{emp.salary ? Number(emp.salary).toFixed(2) : '0.00'} DH</td>
+                  <td>${emp.salary ? Number(emp.salary).toFixed(2) : '0.00'}</td>
                   <td><span className={`status-badge status-${emp.status}`}>{t(`employees.status.${emp.status}`)}</span></td>
                   <td>
                     <button className="btn btn-secondary btn-sm" onClick={() => handleEdit(emp)}>✏️</button>
