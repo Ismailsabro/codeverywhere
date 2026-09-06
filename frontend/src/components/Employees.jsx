@@ -11,6 +11,8 @@ const Employees = () => {
   const [formData, setFormData] = useState({
     name: '', email: '', phone: '', position: '', department: '', salary: 0, status: 'active', hire_date: ''
   });
+  const [accessEmployee, setAccessEmployee] = useState(null);
+  const [accessPassword, setAccessPassword] = useState('');
 
   useEffect(() => { fetchEmployees(); }, []);
 
@@ -49,6 +51,16 @@ const Employees = () => {
     catch (err) { alert(t('common.error')); }
   };
 
+  const handleSetAccess = async (e) => {
+    e.preventDefault();
+    try {
+      await api.post(`/employees/${accessEmployee.id}/access`, { password: accessPassword });
+      alert(t('employees.access.success'));
+      setAccessEmployee(null);
+      setAccessPassword('');
+    } catch (err) { alert(err.response?.data?.error || t('common.error')); }
+  };
+
   if (loading) return <div className="loading">{t('common.loading')}</div>;
 
   return (
@@ -79,6 +91,12 @@ const Employees = () => {
                   <td><span className={`status-badge status-${emp.status}`}>{t(`employees.status.${emp.status}`)}</span></td>
                   <td>
                     <button className="btn btn-secondary btn-sm" onClick={() => handleEdit(emp)}>✏️</button>
+                    <button
+                      className="btn btn-secondary btn-sm"
+                      onClick={() => emp.email ? setAccessEmployee(emp) : alert(t('employees.access.noEmail'))}
+                      style={{marginLeft:'0.5rem'}}
+                      title={t('employees.access.button')}
+                    >🔑</button>
                     <button className="btn btn-danger btn-sm" onClick={() => handleDelete(emp.id)} style={{marginLeft:'0.5rem'}}>🗑️</button>
                   </td>
                 </tr>
@@ -117,6 +135,30 @@ const Employees = () => {
               <div className="modal-footer">
                 <button type="button" className="btn btn-secondary" onClick={() => setShowModal(false)}>{t('common.cancel')}</button>
                 <button type="submit" className="btn btn-primary">{editingEmployee ? t('employees.modal.submitEdit') : t('employees.modal.submitAdd')}</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
+
+      {accessEmployee && (
+        <div className="modal-overlay" onClick={() => setAccessEmployee(null)}>
+          <div className="modal" onClick={e => e.stopPropagation()}>
+            <div className="modal-header">
+              <h3>{t('employees.access.modalTitle')} — {accessEmployee.name}</h3>
+              <button className="modal-close" onClick={() => setAccessEmployee(null)}>×</button>
+            </div>
+            <form onSubmit={handleSetAccess}>
+              <div className="modal-body">
+                <p style={{ marginTop: 0, color: '#6b7280', fontSize: '0.9rem' }}>{accessEmployee.email}</p>
+                <div className="form-group">
+                  <label>{t('employees.access.passwordLabel')}</label>
+                  <input type="text" value={accessPassword} onChange={e => setAccessPassword(e.target.value)} minLength={6} required />
+                </div>
+              </div>
+              <div className="modal-footer">
+                <button type="button" className="btn btn-secondary" onClick={() => setAccessEmployee(null)}>{t('common.cancel')}</button>
+                <button type="submit" className="btn btn-primary">{t('employees.access.submit')}</button>
               </div>
             </form>
           </div>

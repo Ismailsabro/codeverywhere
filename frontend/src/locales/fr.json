@@ -62,6 +62,14 @@
       "active": "Actif",
       "on_leave": "En congé",
       "terminated": "Terminé"
+    },
+    "access": {
+      "button": "Créer un accès",
+      "modalTitle": "Créer un accès",
+      "passwordLabel": "Mot de passe",
+      "submit": "Créer l'accès",
+      "success": "Accès créé — communiquez ces identifiants à l'employé.",
+      "noEmail": "Cet employé n'a pas d'adresse email"
     }
   },
   "chat": {

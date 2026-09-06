@@ -62,6 +62,14 @@
       "active": "Active",
       "on_leave": "On leave",
       "terminated": "Terminated"
+    },
+    "access": {
+      "button": "Set login access",
+      "modalTitle": "Set login access",
+      "passwordLabel": "Password",
+      "submit": "Set access",
+      "success": "Access created — share these credentials with the employee.",
+      "noEmail": "This employee has no email address"
     }
   },
   "chat": {
