@@ -81,7 +81,10 @@
     "sendError": "Error sending message",
     "translate": "Translate",
     "translateError": "Translation error",
-    "hideTranslation": "×"
+    "hideTranslation": "×",
+    "attach": "Attach a file",
+    "fileTooLarge": "File too large (max 5MB)",
+    "removeFile": "Remove"
   },
   "dashboard": {
     "title": "Dashboard",

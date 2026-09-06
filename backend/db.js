@@ -41,10 +41,18 @@ const initDb = async () => {
       sender_id INTEGER REFERENCES users(id),
       sender_name VARCHAR(255),
       sender_role VARCHAR(50),
-      content TEXT NOT NULL,
+      content TEXT,
       created_at TIMESTAMP DEFAULT NOW()
     );
   `);
+
+  // Attachments are stored in Postgres rather than on disk, since Render's
+  // filesystem is ephemeral and wiped on every deploy/restart.
+  await pool.query('ALTER TABLE messages ALTER COLUMN content DROP NOT NULL');
+  await pool.query('ALTER TABLE messages ADD COLUMN IF NOT EXISTS file_data BYTEA');
+  await pool.query('ALTER TABLE messages ADD COLUMN IF NOT EXISTS file_name VARCHAR(255)');
+  await pool.query('ALTER TABLE messages ADD COLUMN IF NOT EXISTS file_type VARCHAR(100)');
+  await pool.query('ALTER TABLE messages ADD COLUMN IF NOT EXISTS file_size INTEGER');
 
   await pool.query(`
     CREATE TABLE IF NOT EXISTS tasks (

@@ -56,5 +56,7 @@ body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Ro
 .chat-message.own { background: #dbeafe; align-self: flex-end; }
 .chat-message .sender { font-size: 0.75rem; font-weight: 600; color: #4b5563; margin-bottom: 2px; }
 .chat-message .time { font-size: 0.7rem; color: #9ca3af; margin-top: 2px; }
+.chat-file-chip { display: inline-block; margin-top: 4px; padding: 0.4rem 0.6rem; background: rgba(0,0,0,0.05); border-radius: 6px; font-size: 0.85rem; color: #111827; text-decoration: none; }
+.chat-file-chip:hover { background: rgba(0,0,0,0.1); }
 .chat-input-area { display: flex; gap: 0.5rem; padding: 1rem; border-top: 1px solid #e5e7eb; }
 .chat-input-area input { flex: 1; padding: 0.6rem; border: 1px solid #d1d5db; border-radius: 6px; }

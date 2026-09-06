@@ -81,7 +81,10 @@
     "sendError": "Ошибка отправки сообщения",
     "translate": "Перевести",
     "translateError": "Ошибка перевода",
-    "hideTranslation": "×"
+    "hideTranslation": "×",
+    "attach": "Прикрепить файл",
+    "fileTooLarge": "Файл слишком большой (макс. 5MB)",
+    "removeFile": "Убрать"
   },
   "dashboard": {
     "title": "Панель управления",

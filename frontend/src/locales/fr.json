@@ -81,7 +81,10 @@
     "sendError": "Erreur envoi message",
     "translate": "Traduire",
     "translateError": "Erreur de traduction",
-    "hideTranslation": "×"
+    "hideTranslation": "×",
+    "attach": "Joindre un fichier",
+    "fileTooLarge": "Fichier trop volumineux (max 5MB)",
+    "removeFile": "Retirer"
   },
   "dashboard": {
     "title": "Tableau de bord",
