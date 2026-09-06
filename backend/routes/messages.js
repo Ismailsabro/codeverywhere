@@ -39,12 +39,21 @@ router.post('/', (req, res, next) => {
   const file = req.file;
   if ((!content || !content.trim()) && !file) return res.status(400).json({ error: 'Message vide' });
   try {
+    // Show the employee's HR job title in chat instead of the generic "employee" role
+    let senderLabel = req.user.role;
+    if (req.user.role === 'employee' && req.user.employeeId) {
+      const empResult = await pool.query('SELECT position FROM employees WHERE id=$1', [req.user.employeeId]);
+      if (empResult.rows.length > 0 && empResult.rows[0].position) {
+        senderLabel = empResult.rows[0].position;
+      }
+    }
+
     const result = await pool.query(
       `INSERT INTO messages (sender_id, sender_name, sender_role, content, file_data, file_name, file_type, file_size)
        VALUES ($1,$2,$3,$4,$5,$6,$7,$8)
        RETURNING id, sender_id, sender_name, sender_role, content, file_name, file_type, file_size, created_at`,
       [
-        req.user.id, req.user.name, req.user.role, content || null,
+        req.user.id, req.user.name, senderLabel, content || null,
         file ? file.buffer : null, file ? file.originalname : null, file ? file.mimetype : null, file ? file.size : null
       ]
     );

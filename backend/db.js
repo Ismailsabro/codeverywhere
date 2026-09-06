@@ -54,6 +54,19 @@ const initDb = async () => {
   await pool.query('ALTER TABLE messages ADD COLUMN IF NOT EXISTS file_type VARCHAR(100)');
   await pool.query('ALTER TABLE messages ADD COLUMN IF NOT EXISTS file_size INTEGER');
 
+  // One-time backfill: old messages stored the generic "employee" role
+  // label instead of the sender's actual HR job title.
+  await pool.query(`
+    UPDATE messages
+    SET sender_role = employees.position
+    FROM users
+    JOIN employees ON employees.email = users.email
+    WHERE messages.sender_id = users.id
+      AND messages.sender_role = 'employee'
+      AND employees.position IS NOT NULL
+      AND employees.position != ''
+  `);
+
   await pool.query(`
     CREATE TABLE IF NOT EXISTS tasks (
       id SERIAL PRIMARY KEY,
